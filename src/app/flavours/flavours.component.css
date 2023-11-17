@@ -1,0 +1,51 @@
+.iceName{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: inherit;
+    color: darkblue;
+    background-color: #63cfd9;
+    cursor: pointer;
+}
+
+.img {
+  height: 250px;
+  width: 299px;
+  padding: 0.5rem;
+  background-color: #63cfd9;
+  cursor: pointer;
+}
+
+.card:hover .img,
+.card:hover .iceName {
+  background-color: #ffd8e0;
+}
+/* counter.component.css */
+
+.counter-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .counter-input {
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+  }
+  
+  .counter-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .counter-button:hover {
+    background-color: #0056b3;
+  }
+  

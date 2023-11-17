@@ -1,0 +1,38 @@
+footer,
+nav {
+    background-color: #fbb2c5 !important;
+    box-shadow: 5px 3px 20px #6d0f0f;
+}
+
+nav {
+    margin-bottom: 15px;
+}
+
+.logo {
+    font-family: cursive;
+    color: #6d0f0f;
+    text-shadow: 2px 2px #d54c8b;
+}
+
+.btn {
+    margin-right: 20px;
+}
+
+footer {
+    position: relative;
+    margin-bottom: 0 !important;
+    margin-top: 15px;
+}
+
+
+.nav-link {
+    font-weight: bolder;
+    font-size: 24px;
+    color: #6d0f0f;
+}
+
+.nav-link:active,
+.nav-link.active,
+.nav-link:hover {
+    color: #d54c8b;
+}
