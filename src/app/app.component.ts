@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'iceCreamShopApp';
+
+  isLogin: boolean = true;
+  @ViewChild('closeLogin') closeLogin: any;
+
   constructor(public router: Router){}
+
+  enableLogin(event: boolean) {
+    this.isLogin = event;
+  }
+
+  signin(event: any) {
+    this.router.navigate(['./user']);
+    this.closeLogin.nativeElement.click();
+  }
 }

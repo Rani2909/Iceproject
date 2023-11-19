@@ -1,5 +1,5 @@
 <form #registrationForm="ngForm" (ngSubmit)="register()">
-    <div class="row mx-0 mt-3">
+    <div class="row">
         <div class="col-6">
             <div class="mb-3">
                 <label for="username" class="form-label">First Name</label>
@@ -30,9 +30,12 @@
                     [(ngModel)]="confirmPassword" required>
             </div>
         </div>
+        <div class="mb-3">
+            Already have a account? <a role="button" class="text-primary" (click)="login()">Login here.</a>
+        </div>
         <div class="col-12 mb-3">
-            <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm me-3" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-sm">Register</button>
         </div>
     </div>
 </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../customer.service';
+import { CustomerService } from '../../customer.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +8,12 @@ import { CustomerService } from '../customer.service';
 })
 export class ProfileComponent implements OnInit {
   customerData: any = {};
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+  phoneNumber: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
 
   constructor(private customerService: CustomerService) {}
 

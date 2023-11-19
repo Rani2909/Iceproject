@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonserviceService } from '../commonservice.service';
+import { CommonserviceService } from '../../commonservice.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,7 +7,8 @@ import { CommonserviceService } from '../commonservice.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  cartItems: any[] = [];
+
+  public cartItems: any[] = [];
 
   constructor(private commonservice: CommonserviceService) { }
 
@@ -15,24 +16,35 @@ export class CartComponent {
     this.getCartItems();
   }
 
-  getCartItems(): void {
+  public getCartItems(): void {
     this.cartItems = this.commonservice.getCartItems();
-    console.log('Cart Items:', this.cartItems);
   }
 
-  removeItem(index: number): void {
+  public removeItem(index: number): void {
     this.commonservice.removeFromCart(index);
-    console.log('After removeItem:', this.commonservice.getCartItems());
     this.getCartItems();
   }
 
-  clearCart(): void {
+  public clearCart(): void {
     this.commonservice.clearCart();
-    console.log('After clearCart:', this.commonservice.getCartItems());
     this.getCartItems();
   }
 
-  getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.price, 0);
+  public getTotalPrice(): number {
+    let price = 0;
+    this.cartItems.forEach((item: any) => {
+      price += item.count * item.price;
+    });
+    return price;
+  }
+
+  public increment(item: any) {
+    item.count++;
+  }
+
+  public decrement(item: any) {
+    if (item.count > 1) {
+      item.count--;
+    }
   }
 }

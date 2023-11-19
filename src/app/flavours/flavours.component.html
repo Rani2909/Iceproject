@@ -3,7 +3,7 @@
   <div class="row mx-0">
     <div class="col-3 mb-3" *ngFor="let item of flavoursArray">
       <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal"
-        (click)="openPopup(item.fName)">
+        (click)="viewProduct(item.fName)">
         <img class="img" src="assets/images/{{item.displayPic}}" alt="iceCream image">
         <span class="iceName p-3">{{item.fName}}</span>
       </div>
@@ -17,7 +17,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="icecreamDetailModalLabel">Ordering - {{selectedItem}}</h5>
+          <h5 class="modal-title" id="icecreamDetailModalLabel">Ordering - {{selectedFlavor?.fName}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -85,13 +85,17 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <div class="counter-container">
-            <button class="counter-button" (click)="decrement()">-</button>
-            <input class="counter-input" type="text" [(ngModel)]="counterValue" readonly>
-            <button class="counter-button" (click)="increment()">+</button>
+          <button type="button" #closeFlavModal class="btn btn-outline-secondary btn-sm m-0 me-3" data-bs-dismiss="modal">Cancel</button>
+          <div class="input-group m-0 w-25">
+            <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrement()" id="button-addon1">
+              <em class="fa fa-minus"></em>
+            </button>
+            <input class="form-control form-control-sm border-secondary" type="text" [(ngModel)]="counterValue" readonly>
+            <button class="btn btn-outline-secondary btn-sm" type="button" id="button-addon1" (click)="increment()">
+              <em class="fa fa-plus"></em>
+            </button>
           </div>
-          <button type="button" class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
+          <button type="button" class="btn btn-outline-primary btn-sm m-0 ms-3" (click)="addToCart()">Add to Cart</button>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CartComponent } from '../cart/cart.component';
+import { Component, ViewChild } from '@angular/core';
+import { CartComponent } from '../user/cart/cart.component';
 import { CommonserviceService } from '../commonservice.service';
 
 @Component({
@@ -8,17 +8,13 @@ import { CommonserviceService } from '../commonservice.service';
   styleUrls: ['./flavours.component.css']
 })
 export class FlavoursComponent {
-  selectedType: string = ''; // To store the selected type
-  selectedSize: string = ''; // To store the selected size
-  selectedToppings: any = []; // To store the selected toppings
-  additionalRequest: string = ''; // To store additional comments
-  selectedItem: string = '';
-  selectedFlavor: any;
 
-  constructor(private commonservice: CommonserviceService) {
-    this.selectedToppings = []; // Initialize selectedToppings as an empty array
-  }
-  toppings: any[] = [
+  public selectedType: string = ''; // To store the selected type
+  public selectedSize: string = ''; // To store the selected size
+  private selectedToppings: any = []; // To store the selected toppings
+  public additionalRequest: string = ''; // To store additional comments
+  public selectedFlavor: any;
+  public toppings: any[] = [
     { id: 1, name: 'Oreo Crumbs', isSelected: false },
     { id: 2, name: 'Chocolate Crunch', isSelected: false },
     { id: 3, name: 'Rainbow Sprinkles', isSelected: false },
@@ -27,8 +23,7 @@ export class FlavoursComponent {
     { id: 6, name: 'Dry Nuts', isSelected: false },
     { id: 7, name: 'Fruits', isSelected: false },
     { id: 8, name: 'M & M', isSelected: false }
-  ]
-
+  ];
   public flavoursArray = [
     {
       id: "01",
@@ -105,33 +100,39 @@ export class FlavoursComponent {
       price: 7.99
     },
 
-  ]
-  counterValue: number = 1;
-  priceVal: number = 0;
+  ];
+  public counterValue: number = 1;
+  public priceVal: number = 0;
+  private originalPrice: number = 0;
+  @ViewChild('closeFlavModal') closeFlavModal: any;
 
-  increment() {
+  constructor(private commonservice: CommonserviceService) {
+    this.selectedToppings = []; // Initialize selectedToppings as an empty array
+  }
+
+  public increment() {
     this.counterValue++;
     this.priceVal = this.originalPrice * this.counterValue
   }
 
-  decrement() {
-    if (this.counterValue > 0) {
+  public decrement() {
+    if (this.counterValue > 1) {
       this.counterValue--;
-      this.priceVal = (this.originalPrice * this.counterValue)
-
+      this.priceVal = (this.originalPrice * this.counterValue);
     }
   }
-  updateSelectedToppings(id: any, name: any) {
+
+  public updateSelectedToppings(id: any, name: any) {
     this.toppings.filter(item => {
       if (item.id == id) {
         this.selectedToppings.push(item);
       }
-    })
-    console.log(this.selectedToppings)
+    });
   }
-  addToCart() {
+
+  public addToCart() {
     const iceCreamDetail = {
-      item: this.selectedItem,
+      flavour: this.selectedFlavor.fName,
       type: this.selectedType,
       size: this.selectedSize,
       toppings: this.selectedToppings,
@@ -140,44 +141,26 @@ export class FlavoursComponent {
       price: this.priceVal,
       displayPic: this.selectedFlavor.displayPic 
     };
-
-    console.log('Ice Cream Detail:', iceCreamDetail);
     this.commonservice.addToCart(iceCreamDetail);
-
     this.clearForm();
-
-    const modalElement = document.getElementById('icecreamDetailModal');
-
-    //if (modalElement) {
-    ///modalElement.style.display = 'none';
-    //} 
-    //else {
-    //console.error("Modal element with ID 'icecreamDetailModal' not found");
-    //}
+    this.closeFlavModal.nativeElement.click();
   }
 
-  getFlavorPrice(selectedFlavor: any): number {
-    return selectedFlavor ? parseFloat(selectedFlavor.price) : 0;
-  }
-  originalPrice: number = 0;
-
-  openPopup(item: string) {
-    this.selectedItem = item;
+  public viewProduct(item: string) {
     this.selectedFlavor = this.flavoursArray.find(flavor => flavor.fName === item);
     const indx = this.flavoursArray.findIndex(x => x.fName === item)
     this.originalPrice = this.flavoursArray[indx].price;
     this.priceVal = this.originalPrice;
-    this.selectedFlavor.displayPic = `/assets/images/${this.flavoursArray[indx].displayPic}`;
-    console.log('Flavor Display Pic:', this.selectedFlavor.displayPic);
-    console.log('Price Value:', this.priceVal);
+    this.selectedFlavor.displayPic = this.flavoursArray[indx].displayPic;
   }
-  clearForm() {
+
+  private clearForm() {
     this.selectedType = '';
     this.selectedSize = '';
     this.selectedToppings = [];
     this.additionalRequest = '';
-    this.selectedItem = '';
     this.counterValue = 1;
+    this.toppings.forEach((topping: any) => topping.isSelected = false );
   }
 
 }

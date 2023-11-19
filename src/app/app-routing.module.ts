@@ -6,10 +6,11 @@ import { DrinksComponent } from './drinks/drinks.component';
 import { SpecialMenuComponent } from './special-menu/special-menu.component';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 import { AdminComponent } from './admin/admin.component';
-import { CartComponent } from './cart/cart.component';
+import { CartComponent } from './user/cart/cart.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: 'flavours', component: FlavoursComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'drinks', component: DrinksComponent },
   { path: 'specialMenu', component: SpecialMenuComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'user', component: UserComponent },
   { path: '', component: HomePageComponent }
 ];
 

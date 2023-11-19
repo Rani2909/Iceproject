@@ -8,10 +8,17 @@ export class CommonserviceService {
 
   addToCart(item: any) {
     console.log('Before adding to cart:', this.cartItems);
-    const existingItem = this.cartItems.find(cartItem => cartItem.id === item.id);
+    const existingItem = this.cartItems.find(cartItem => {
+      if (cartItem.flavour === item.flavour && cartItem.type === item.type && cartItem.size === item.size) {
+        const toppingCount = cartItem.toppings.filter((obj: any) => item.toppings.some((itemObj: any) => obj.id === itemObj.id));
+        return toppingCount.length === item.toppings.length ? true : false;
+      } else {
+        return false;
+      }
+    });
 
     if (existingItem) {
-      existingItem.quantity += item.quantity || 1;
+      existingItem.count += item.count || 1;
     } else {
       this.cartItems.push(item);
     }
