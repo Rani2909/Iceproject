@@ -132,14 +132,14 @@ export class FlavoursComponent {
 
   public addToCart() {
     const iceCreamDetail = {
-      flavour: this.selectedFlavor.fName,
+      productType: "Ice Cream",
+      item: this.selectedFlavor.fName + ' - ' + this.selectedType + ' - ' + this.selectedSize,
       type: this.selectedType,
       size: this.selectedSize,
       toppings: this.selectedToppings,
       customerComments: this.additionalRequest,
       count: this.counterValue,
-      price: this.priceVal,
-      displayPic: this.selectedFlavor.displayPic 
+      price: this.priceVal
     };
     this.commonservice.addToCart(iceCreamDetail);
     this.clearForm();
