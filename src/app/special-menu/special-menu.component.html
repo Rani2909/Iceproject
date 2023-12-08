@@ -10,7 +10,7 @@
             <div class="desc p-3">{{item.desc}}</div>
             <div class="modal-footer justify-content-center mt-5">
               <div class="w-100 mb-3">$ {{item.price}}</div>
-              <button type="button" #closeFlavModal class="btn btn-secondary btn-sm m-0 me-3" data-bs-dismiss="modal">Cancel</button>
+              
               <div class="input-group m-0 w-25">
                 <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrement()" id="button-addon1">
                   <em class="fa fa-minus"></em>
@@ -24,9 +24,24 @@
             </div>
           </div>
         <span class="iceName">{{item.fName}}</span>
-
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="icecreamDetailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="icecreamDetailModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+

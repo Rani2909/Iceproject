@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,10 @@ import { CommonserviceService } from './commonservice.service';
 import { ProfileComponent } from './user/profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { OrderComponent } from './user/order/order.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import * as $ from "jquery";
+import * as bootstrap from "bootstrap";
+import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +28,7 @@ import { OrderComponent } from './user/order/order.component';
     LoginComponent,
     RegisterComponent,
     AdminComponent,
+    AdminOrderDetailsComponent,
     DrinksComponent,
     SpecialMenuComponent,
     CartComponent,
@@ -32,9 +37,11 @@ import { OrderComponent } from './user/order/order.component';
     OrderComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [CommonserviceService],
   bootstrap: [AppComponent]

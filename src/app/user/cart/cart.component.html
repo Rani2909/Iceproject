@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of cartItems; let i = index">
-            <td scope="row" class="text-center">{{i + 1}}</td>
+            <td scope="row" class="text-center">{{ item.row }}</td>
             <td>{{ item.item }}</td>
             <td class="text-center">{{ item?.toppings?.length }}</td>
             <td class="text-center">
@@ -24,7 +24,7 @@
                 <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrement(item)" id="button-addon1">
                   <i class="fa fa-minus"></i>
                 </button>
-                <input class="form-control form-control-sm border-secondary" type="text" [(ngModel)]="item.count" readonly>
+                <input class="form-control form-control-sm border-secondary text-center" type="text" [(ngModel)]="item.count" readonly>
                 <button class="btn btn-outline-secondary btn-sm" type="button" id="button-addon1" (click)="increment(item)">
                   <i class="fa fa-plus"></i>
                 </button>
@@ -33,7 +33,7 @@
             <td class="text-end">{{ item.price | currency }}</td>
             <td class="text-end">{{ item.price * item.count | currency }}</td>
             <td class="text-center">
-              <a role="button" title="Remove" (click)="removeItem(i)"><i class="fa fa-xmark fa-lg"></i></a>
+              <a role="button" title="Remove" (click)="removeItem(item.row)"><i class="fa fa-xmark fa-lg"></i></a>
             </td>
           </tr>
           <tr *ngIf="cartItems.length === 0">
@@ -48,7 +48,7 @@
           <tr *ngIf="cartItems.length > 0">
             <td colspan="6" class="text-end"></td>
             <td class="text-center">
-              <button class="btn btn-outline-success btn-sm me-3">Order Now</button>
+              <button class="btn btn-outline-success btn-sm me-3" (click)="orderNow()">Order Now</button>
             </td>
           </tr>
         </tbody>

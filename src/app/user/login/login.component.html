@@ -1,6 +1,6 @@
 <div class="row mx-0 mt-3">
     <div class="col-6" *ngIf="isLogin">
-        <form #loginForm="ngForm" (ngSubmit)="login()">
+        <form #loginForm="ngForm">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
@@ -14,7 +14,7 @@
             </div>
             <div class="mb-3">
                 <button type="button" class="btn btn-outline-secondary btn-sm me-3" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-sm" (click)="login()">Login</button>
+                <button type="submit" class="btn btn-primary btn-sm" (click)="login()" data-bs-dismiss="modal">Login</button>
             </div>
         </form>
     </div>
