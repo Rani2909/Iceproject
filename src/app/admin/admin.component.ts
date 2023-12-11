@@ -6,25 +6,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  username = '';
-  password = '';
-  loginMessage = '';
+  public username = '';
+  public password = '';
+  public userIdInvalid = false;
+  public pswrdInvalid = false;
+  public userInvalid = false;
+  public userValid = false;
 
   users = [
     { username: 'akila', password: 'password1' },
     { username: 'rani', password: 'password2' },
   ];
-// constructor(private){}
+
   onSubmit() {
+    if (this.username === '' && this.password === '') {
+      this.userIdInvalid = true;
+      this.pswrdInvalid = true;
+      return;
+    } else if (this.username !== '' && this.password === '') {
+      this.userIdInvalid = false;
+      this.pswrdInvalid = true;
+      return;
+    } else if (this.username === '' && this.password !== '') {
+      this.userIdInvalid = true;
+      this.pswrdInvalid = false;
+      return;
+    } else {
+      this.userIdInvalid = false;
+      this.pswrdInvalid = false;
+    }
     const user = this.users.find(
       (u) => u.username === this.username && u.password === this.password
     );
-    if (user) {
-      this.loginMessage = 'Login Successful!';
-
-    } else {
-      this.loginMessage = 'Login Failed. Please check your username and password.';
-    }
+    this.userInvalid = user ? false : true;
+    this.userValid = user ? true : false;
   }
 
 }

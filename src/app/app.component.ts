@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonserviceService } from './commonservice.service';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-root',

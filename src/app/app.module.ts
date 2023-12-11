@@ -27,8 +27,6 @@ import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-or
     HomePageComponent,
     LoginComponent,
     RegisterComponent,
-    AdminComponent,
-    AdminOrderDetailsComponent,
     DrinksComponent,
     SpecialMenuComponent,
     CartComponent,
